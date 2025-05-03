@@ -18,6 +18,7 @@ const SignUp = () => {
       profilePic : "",
   })
 
+
   const navigate = useNavigate()
 
   const handleOnChange = (e) =>{
@@ -26,7 +27,7 @@ const SignUp = () => {
       setData((preve)=>{
           return{
               ...preve,
-              [name] : value
+              [name] : value  //so here name and value means left shown and value is orginal for eg email is [name]  and vivek is value dude
           }
       })
   }
@@ -48,6 +49,29 @@ const SignUp = () => {
 
   const handleSubmit = async(e) =>{
       e.preventDefault()
+      console.log("Here is the set Data from the form===========",data)
+
+      try {
+        const response = await fetch("http://localhost:8080/api/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+    
+        const result = await response.json();
+    
+        if (response.ok) {
+          alert("Signup successful!");
+          navigate("/login"); // or wherever you want
+        } else {
+          alert(result.message || "Signup failed");
+        }
+      } catch (error) {
+        console.error("Error during signup:", error);
+        alert("Something went wrong");
+      }
   }
 
   return (
