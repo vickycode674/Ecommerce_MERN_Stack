@@ -4,6 +4,8 @@ import { FaEye } from "react-icons/fa";
 import { FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from 'react-router-dom';
 import {imagetoBase64} from '../helpers/imagetoBase64';
+import SummaryApi from '../common';
+import { toast } from 'react-toastify';
 // import SummaryApi from '../common';
 // import { toast } from 'react-toastify';
 
@@ -49,29 +51,55 @@ const SignUp = () => {
 
   const handleSubmit = async(e) =>{
       e.preventDefault()
-      console.log("Here is the set Data from the form===========",data)
 
-      try {
-        const response = await fetch("http://localhost:8080/api/signup", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
+      if(data.password === data.confirmPassword){
+        const dataResponse = await fetch(SummaryApi.SignUp.url,{
+            method : SummaryApi.SignUp.method,
+            headers:{
+                'content-type':'application/json'
+            },
+            body : JSON.stringify(data)
+          })
     
-        const result = await response.json();
+           const final_data = await dataResponse.json();
+
+           if(final_data.success){
+            toast.success(final_data.message)
+            navigate("/login")
+           }
+
+           if(final_data.error){
+            toast.error(final_data.message)
+           }
     
-        if (response.ok) {
-          alert("Signup successful!");
-          navigate("/login"); // or wherever you want
-        } else {
-          alert(result.message || "Signup failed");
-        }
-      } catch (error) {
-        console.error("Error during signup:", error);
-        alert("Something went wrong");
+           console.log("data===",final_data);
       }
+
+      else{
+        console.log("Please check details and try again somewhere mistake is happening")
+      }
+
+    //   try {
+    //     const response = await fetch("http://localhost:8080/api/signup", {
+    //       method: "POST",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //       body: JSON.stringify(data),
+    //     });
+    
+    //     const result = await response.json();
+    
+    //     if (response.ok) {
+    //       alert("Signup successful!");
+    //       navigate("/login"); // or wherever you want
+    //     } else {
+    //       alert(result.message || "Signup failed");
+    //     }
+    //   } catch (error) {
+    //     console.error("Error during signup:", error);
+    //     alert("Something went wrong");
+    //   }
   }
 
   return (

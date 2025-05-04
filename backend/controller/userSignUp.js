@@ -18,6 +18,16 @@ async function userSignUpController(req,res){
         throw new Error ("Please Provide Mail id")
       }
 
+      const existingUser = await userModel.findOne({email});
+
+      if (existingUser){
+        return res.status(400).json({
+            message: "User already exists with this email",
+            error: true,
+            success: false
+      })
+    }
+
       const salt = bcrypt.genSaltSync(10);
       const hashPassword = await bcrypt.hashSync(password,salt)
 
@@ -27,6 +37,7 @@ async function userSignUpController(req,res){
 
       const payload = {   //combinging whole payload
          ...req.body,
+         role : "GENERAL",
          password : hashPassword,
       }
       console.log("Here is teh final save data dude========",payload)
