@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { FaEye, FaEyeSlash } from 'react-icons/fa'
 import { Link, useNavigate } from 'react-router-dom'
 import loginIcons from '../assest/signin.gif';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
+import Context from '../context';
 
 
 
@@ -15,6 +16,7 @@ const Login = () => {
     })
 
     const navigate = useNavigate()
+    const {fetchUserDetails} = useContext(Context)
 
 
     const handleOnChange = (e) => {
@@ -47,6 +49,7 @@ const Login = () => {
 
         if (final_data.success) {
             toast.success(final_data.message)
+            fetchUserDetails() //calling like vue js parent hooks in react js using use context
             navigate("/")
         }
 
