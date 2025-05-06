@@ -22,7 +22,8 @@ async function authToken(req,res,next){ //here it goes to next controller
         req.userId = decoded?._id
         console.log("here is decoded one==============",decoded?._id)
   
-        next()      });
+        next()    //This allows Express to move on to the actual controller. 
+      });
     }
 
     catch(err){
