@@ -71,6 +71,9 @@ const SignUp = () => {
            if(final_data.error){
             toast.error(final_data.message)
            }
+           else{
+            toast.error("Please check and confirm password")
+           }
     
            console.log("data===",final_data);
       }

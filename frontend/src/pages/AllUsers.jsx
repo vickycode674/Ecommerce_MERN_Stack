@@ -6,8 +6,18 @@ import { MdModeEdit } from "react-icons/md";
 import ChangeUserRole from '../components/ChangeUserRole';
 
 
+
 const AllUsers = () => {
     const [allUsers,setAllUsers] = useState([])
+    const [openUpdateRole,setOpenUpdateRole] = useState(false)
+    const [updateUserDetails,setUpdateUserDetails] = useState({
+        email: "",
+        name: "",
+        role: "",
+        _id:""
+    })
+
+    console.log("Heere is the updateUserDetails==============",updateUserDetails)
 
     const fetchAllUsers = async() =>{
          const fetchData = await fetch(SummaryApi.allUser.url,{
@@ -16,7 +26,7 @@ const AllUsers = () => {
          })
          const dataResponse = await fetchData.json();
 
-         console.log(dataResponse)
+         console.log("here is the user response from all",dataResponse)
 
          if(dataResponse.success){
             setAllUsers(dataResponse.data)
@@ -35,7 +45,7 @@ const AllUsers = () => {
     <div className='bg-white pb-4 '>
         <table className='w-full userTable'>
             <thead>
-                <tr>
+                <tr  className='bg-black text-white'>
                 <th>Sr.</th>
                  <th>Name</th>
                  <th>Email</th>
@@ -58,7 +68,13 @@ const AllUsers = () => {
                                 <td>{el?.role}</td>
                                 <td>{moment(el?.createdAt).format('ll')}</td>
                                 <td>
-                                <button className='bg-green-100 p-2 rounded-full cursor-pointer hover:bg-green-500 hover:text-white'>
+                                <button className='bg-green-100 p-2 rounded-full cursor-pointer hover:bg-green-500 hover:text-white' 
+                                onClick={()=>{
+                                    setUpdateUserDetails(el)
+                                    setOpenUpdateRole(true)
+                                }
+                                }
+                                >
                                         <MdModeEdit/>
                                     </button>
                                 </td>
@@ -69,7 +85,19 @@ const AllUsers = () => {
             </tbody>
         </table>
 
-        <ChangeUserRole/>
+        {
+            openUpdateRole && (
+                <ChangeUserRole
+                 onClose={()=>setOpenUpdateRole(false)}
+                 name={updateUserDetails.name}
+                 email={updateUserDetails.email}
+                 role={updateUserDetails.role}
+                 userId={updateUserDetails._id}
+                 callFunc={fetchAllUsers}
+                 />
+            )
+        }
+
     </div>
   )
 }
