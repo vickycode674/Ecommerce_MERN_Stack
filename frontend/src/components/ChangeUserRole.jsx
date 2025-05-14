@@ -16,11 +16,9 @@ const ChangeUserRole = ({ //these are the props we are getting from parent compo
 
     const handleOnChangeSelect = (e)=> {
         setUserRole(e.target.value)
-
     }
 
     const updateUserRole = async() =>{
-        console.log("here is the frontend data with the user",userId,userRole)
       const fetchResponse = await fetch(SummaryApi.updateUser.url,{
         method:SummaryApi.updateUser.method,
         credentials:'include',
