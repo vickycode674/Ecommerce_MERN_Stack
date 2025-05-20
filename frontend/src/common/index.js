@@ -24,6 +24,18 @@ const SummaryApi = {
     updateUser :{
         url : `${backendDomain}/api/update-user`, 
         method: 'post',
+    },
+    uploadProduct:{
+        url: `${backendDomain}/api/upload-product`,
+        method:'post',
+    },
+    allProduct:{  //step 4 receving routes or hiting from here frontend stay as intermetidate
+        url: `${backendDomain}/api/get-product`,
+        method:'get',
+    },
+    updateProduct:{  //step 4 receving routes or hiting from here frontend stay as intermetidate
+        url: `${backendDomain}/api/update-product`,
+        method:'post',
     }
   }
 
