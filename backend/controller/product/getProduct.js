@@ -1,10 +1,11 @@
-const productModel = require("../models/productModel");
+const productModel = require("../../models/productModel");
 
 const getProductController = async(req,res)=>{
    try{
        //getting the producrt infro from db  [Creating Controller a api to get the value]
        const allProduct = await  productModel.find();
-
+       
+       console.log("Here is the entire thing coming from backend db to frontend dude=============",allProduct);
        res.json({
         message:"All Product",
         success:true,
