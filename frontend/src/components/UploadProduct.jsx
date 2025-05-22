@@ -27,7 +27,7 @@ const UploadProduct = ({
      const [fullScreenImage,setFullScreenImage] = useState("")
 
 
-    const handleOnChange = (e) => {
+    const handleOnChange = (e) => { //whenever change came it follows and moves on
       const {name,value} = e.target
       console.log("Here is the name and value of the change=============",name,value)
 

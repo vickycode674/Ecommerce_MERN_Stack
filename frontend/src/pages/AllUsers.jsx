@@ -9,7 +9,7 @@ import ChangeUserRole from '../components/ChangeUserRole';
 
 const AllUsers = () => {
     const [allUsers,setAllUsers] = useState([])
-    const [openUpdateRole,setOpenUpdateRole] = useState(false)
+    const [openUpdateRole,setOpenUpdateRole] = useState(false) //boolean state
     const [updateUserDetails,setUpdateUserDetails] = useState({
         email: "",
         name: "",
@@ -29,7 +29,7 @@ const AllUsers = () => {
          console.log("here is the user response from all",dataResponse)
 
          if(dataResponse.success){
-            setAllUsers(dataResponse.data)
+            setAllUsers(dataResponse.data) //This brings data into the state
          }
 
          if(dataResponse.error){
@@ -87,6 +87,7 @@ const AllUsers = () => {
 
         {
             openUpdateRole && (
+                //here updateUserDetails is acting and sending as a props to other compnent dude
                 <ChangeUserRole
                  onClose={()=>setOpenUpdateRole(false)}
                  name={updateUserDetails.name}

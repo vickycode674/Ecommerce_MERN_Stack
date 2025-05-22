@@ -6,7 +6,7 @@ import { useEffect } from 'react'
 import AdminProductCard from "../components/AdminProductCard";
 
 const AllProducts = () => {
-  const [openUploadProduct,setOpenUploadProduct] = useState(false)
+  const [openUploadProduct,setOpenUploadProduct] = useState(false) //whenever we select it becomes true and other comp
   const [allProduct,setAllProduct] = useState([]) //step 5 using useState for each value
 
   const fetchAllProduct = async()=>{     //step 6 recieving the values here

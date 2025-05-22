@@ -12,7 +12,7 @@ const ChangeUserRole = ({ //these are the props we are getting from parent compo
     userId,
     callFunc,
 }) => {
-    const [userRole,setUserRole] = useState(role)
+    const [userRole,setUserRole] = useState(role) //here wer are changing only userrole so single is selcted
 
     const handleOnChangeSelect = (e)=> {
         setUserRole(e.target.value)
@@ -49,7 +49,7 @@ const ChangeUserRole = ({ //these are the props we are getting from parent compo
         <div className='fixed top-0 bottom-0 left-0 right-0 w-full h-full z-10 flex justify-between items-center '>
             <div className='mx-auto bg-white shadow-md p-4 w-full max-w-sm'>
 
-               <button className='block ml-auto' onClick={()=>onClose}>
+               <button className='block ml-auto cursor-pointer' onClick={onClose}>
                <IoMdClose/>
                </button>
 
