@@ -41,8 +41,6 @@ const ChangeUserRole = ({ //these are the props we are getting from parent compo
         callFunc() //automatically to get updateion of role without refresh dude
       }
 
-      console.log("response Data===========",responseData)
-
     }
 
     return (

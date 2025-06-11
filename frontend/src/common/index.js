@@ -36,6 +36,10 @@ const SummaryApi = {
     updateProduct:{  //step 4 receving routes or hiting from here frontend stay as intermetidate
         url: `${backendDomain}/api/update-product`,
         method:'post',
+    },
+    categoryProduct:{
+        url:`${backendDomain}/api/get-categoryProduct`,
+        method:'get',
     }
   }
 

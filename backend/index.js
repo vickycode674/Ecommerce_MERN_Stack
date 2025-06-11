@@ -10,7 +10,7 @@ const cookieParser = require('cookie-parser')
 const app = express()  //calling  express all modulietries
 
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: 'http://localhost:5174',
     credentials:true,   // or use '*' for all origins (not recommended in production)
   }));
 
