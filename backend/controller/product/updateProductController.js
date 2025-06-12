@@ -10,7 +10,7 @@ async function updateProductController(req,res){
 
         const { _id, ...resBody} = req.body
 
-        const updateProduct = await productModel.findByIdAndUpdate(_id,resBody);
+        const updateProduct = await productModel.findByIdAndUpdate(_id,resBody);//here is updation of the main controller
 
         res.json({
             message:"Product Updated Successfuully",
