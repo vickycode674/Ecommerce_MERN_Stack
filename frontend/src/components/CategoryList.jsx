@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom'
 
 const CategoryList = () => {
     const [categoryProduct,setCategoryProduct] = useState([])
-    const [loadingState,setLoading] = useState(false)
+    const [loading,setLoading] = useState(false)
+
+
+    const categoryLoading = new Array(13).fill(null)
 
     const fetchCategoryProduct = async()=>{
         setLoading(true)
@@ -22,6 +25,14 @@ const CategoryList = () => {
     <div className='container mx-auto p-4'>
         <div className='flex items-center gap-4 justify-between overflow-scroll scrollbar-none'>
           {
+            loading ? (
+                categoryLoading.map((el,index)=>{
+                  return (
+                    <div className='h-16 w-16 md:w-20 md:h-20 rounded-full overflow-hidden bg-slate-200 animate-pulse ' key={"categoryLoading" + index }>
+                    </div>
+            )})
+
+            ) :
             categoryProduct.map((product,index)=>{
                 return(
                     <Link to={"/product-category/"+product?.category} className="cursor-pointer">
