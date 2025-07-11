@@ -24,7 +24,6 @@ function App() {
       dispatch(setUserDetails(dataApi.data))
     }
 
-  console.log("Here is the final detials based on the api=========",dataApi)
   }
 
   
@@ -41,7 +40,7 @@ function App() {
 
     <ToastContainer/>
      <Header />
-     <main className='min-h-[calc(100vh-100px)]'>
+     <main className='min-h-[calc(100vh-100px)] pt-16'>
         <Outlet />
      </main>
      <Footer/>
